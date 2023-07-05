@@ -14,15 +14,15 @@
 
 - 🌱 I’m currently learning **Data Science**
 
-- 👨‍💻 All of my projects are available at [https://github.com/Mohshaikh23](https://github.com/Mohshaikh23)
+- 👨‍💻 All of my projects are available at [Github Repo](https://github.com/Mohshaikh23)
 
-- 📝 I regularly write articles on [https://medium.com/@mohsin.shaikh324](https://medium.com/@mohsin.shaikh324)
+- 📝 I regularly write articles on [Medium Blogs](https://medium.com/@mohsin.shaikh324)
 
 - 💬 Ask me about **Data**
 
-- 📫 How to reach me **mohsin.shaikh324@gmail.com**
+- 📫 How to reach me [mail_id](**mohsin.shaikh324@gmail.com**)
 
-- 📄 Know about my experiences [https://github.com/Mohshaikh23/Resume/blob/main/MOHSIN%20SHAIKH%20-%20RESUME.pdf](https://github.com/Mohshaikh23/Resume/blob/main/MOHSIN%20SHAIKH%20-%20RESUME.pdf)
+- 📄 Know about my experiences [ My_Resume 📄](https://github.com/Mohshaikh23/Mohshaikh23/blob/main/MOHSIN%20SHAIKH%20-%20RESUME.pdf)
 
 - ⚡ Fun fact **Be an Outlier that no one wants to remove**
 
