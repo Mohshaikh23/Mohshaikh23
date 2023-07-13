@@ -1,10 +1,14 @@
 import os
+import json
+import pandas as pd
 from pathlib import Path
 import streamlit as st
 from PIL import Image
 from streamlit_option_menu import option_menu
-import requests
-import plotly.express as px
+from streamlit import session_state
+from extraction import get_github_repos , load_repositories
+from classification import classify_tags
+import streamlit.components.v1 as components
 
 # -- PATH SETTINGS --
 
@@ -141,73 +145,41 @@ if upper_panel == "EXPERIENCE":
                 )
 
 
+
+
+
+
 if upper_panel == "PROJECTS":
-    def get_github_repos(username):
-        response = requests.get(f"https://api.github.com/users/{username}/repos")
-        if response.status_code == 200:
-            return response.json()
-        else:
-            st.error(f"Error: {response.status_code} - {response.content.decode('utf-8')}")
-        return []
+    st.subheader("GitHub Repositories")
+    repositories = load_repositories()
+    repositories["classification"] = classify_tags(repositories, 'topics')
+    columns = ['name', 'html_url','description', 'classification']
+    # st.dataframe(repositories[columns]) 
+    repos = repositories[['name', 'html_url', 'description', 'classification']]
+    classifications = repos.groupby('classification')
+    
+    
+    classification_options = classifications.groups.keys()
+    selected_classification = option_menu("Project Types", 
+                                          options = list(classification_options),
+                                          default_index=0, 
+                                          orientation='horizontal')
 
-    def classify_project_tags(topics):
-        # Mapping of project tags to specific topics
-        tags = {
-            "machine_learning": ["machine-learning", "ml"],
-            "deep_learning": ["deep-learning", "dl"],
-            "nlp": ["nlp", "natural-language-processing"],
-            "generative_ai": ["generative-ai"],
-            "computer_vision": ["computer-vision", "cv"],
-            "python_project": ["python", "general"]
-        }
+    # Display the selected classification's DataFrame
+    if selected_classification:
+        selected_dataframe = classifications.get_group(selected_classification)
+        st.subheader(f"Selected Classification: {selected_classification}")
+        st.dataframe(selected_dataframe)
 
-        # Check for topics in the repository
-        for tag, topic_keywords in tags.items():
-            for topic in topics:
-                if topic.lower() in topic_keywords:
-                    return tag
+        
 
-        return "uncategorized"
+    
+    
 
-    username = st.text_input("Enter your GitHub username")
-
-    if username:
-        repositories = get_github_repos(username)
-
-        if repositories:
-            st.subheader("GitHub Repositories")
-            for repo in repositories:
-                repo_name = repo["name"]
-                repo_url = repo["html_url"]
-
-                # Fetch repository details including description and topics
-                repo_details = requests.get(repo["url"]).json()
-                repo_topics = repo_details["topics"]
-
-                project_tag = classify_project_tags(repo_topics)
-
-                # Display the repository name as a clickable markdown link with the project tag
-                st.write(f"- [{repo_name}]({repo_url}) ({project_tag.capitalize()})")
-        else:
-            st.warning("No repositories found for the given username.")
-
-
-
-    # Projects_data  = option_menu( menu_title= 'Projects across Career',
-    #                                options = ['Python Projects',
-    #                                           'Machine Learning Projects',
-    #                                           'Deep learning Projets',
-    #                                           'Computer Vision Projects'],
-    #                                 menu_icon='cast',
-    #                                 default_index=0, 
-    #                                 orientation='horizontal')
-    # st.header("Projects")
-    # st.markdown("- [Power BI Report](https://github.com/[your_username]/power-bi-report) - Generated Power BI Report for multiple companies with their Occupancy, HVAC, and AQI data.")
-    # st.markdown("- [WhatsApp Chat Analyzer](https://github.com/[your_username]/whatsapp-chat-analyzer) - Detailed analysis of WhatsApp chats to perform sentiment analysis.")
-    # st.markdown("- [Movie Recommendation System](https://github.com/[your_username]/movie-recommendation-system) - Built a model for predicting and recommending similar movies based on TMDB data.")
-    # st.markdown("- [Occupancy Report Dashboard](https://github.com/[your_username]/occupancy-report-dashboard) - Created a dashboard to specify the client about workspace utilization.")
-    # st.markdown("- [AQI Report Dashboard](https://github.com/[your_username]/aqi-report-dashboard) - Converted sensor-generated data into an AQI and thermal acquisition dashboard for offices.")
-
+    
+    
+    
+   
 
 if upper_panel == "BLOGS":
     st.markdown("I write blogs here")
