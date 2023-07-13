@@ -10,6 +10,9 @@ from extraction import get_github_repos , load_repositories
 from classification import classify_tags
 import streamlit.components.v1 as components
 
+# # Use wide mode layout
+# st.set_page_config(layout="wide")
+
 # -- PATH SETTINGS --
 
 current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
@@ -103,7 +106,7 @@ if upper_panel == "EXPERIENCE":
     if Experience_data == 'Business Promoted':
         display_experience(
         "Business Promoted Pvt Ltd",
-        "Back Office Executive",
+        "Project Manager",
         "June 2021 - Present",
         "- Optimized the workflow of the Repossession back-office process for a US client, leading to improved productivity and revenue generation.\n"
         "- Conducted thorough analysis of process duration, efficiency estimation, and workflow distribution, resulting in enhanced productivity and achievements."
@@ -155,7 +158,8 @@ if upper_panel == "PROJECTS":
     repositories["classification"] = classify_tags(repositories, 'topics')
     columns = ['name', 'html_url','description', 'classification']
     # st.dataframe(repositories[columns]) 
-    repos = repositories[['name', 'html_url', 'description', 'classification']]
+    repos = repositories[columns]
+    repos = repos.drop(repos[repos['classification'] =='Basic Projects'].index)
     classifications = repos.groupby('classification')
     
     

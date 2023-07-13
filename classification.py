@@ -1,12 +1,12 @@
 import streamlit as st
 
 tags = {
-    "machine_learning": ["machine-learning", "ml"],
-    "deep_learning": ["deep-learning", "dl"],
-    "nlp": ["nlp", "natural-language-processing"],
-    "generative_ai": ["generative-ai"],
-    "computer_vision": ["computer-vision", "cv"],
-    "python_project": ["python-project", "general"]
+    "MACHINE LEARNING": ["machine-learning", "ml"],
+    "DEEP LEARNING": ["deep-learning", "dl"],
+    "NATURAL LANGUAGE PROCESSING": ["nlp", "natural-language-processing"],
+    "GENERATIVE AI": ["generative-ai"],
+    "COMPUTER VISION": ["computer-vision", "cv"],
+    "PYTHON PROJECT": ["python-project", "general"]
 }
 
 def classify_tags(dataframe, column):
@@ -22,5 +22,5 @@ def classify_tags(dataframe, column):
             if category_found:
                 break
         else:
-            classification.append("Unclassified")
+            classification.append("Basic Projects")
     return classification
