@@ -13,12 +13,14 @@ from PORTFOLIO_ALL_PAGES.Overview import overview_mode, load_image, logos
 from PORTFOLIO_ALL_PAGES.Experience import experience
 from PORTFOLIO_ALL_PAGES.project import project
 from PORTFOLIO_ALL_PAGES.blogs import display_blog_post
+from PORTFOLIO_ALL_PAGES.contact import contact
 
 
 # -- GENERAL SETTINGS --
 PAGE_TITLE = 'Digital CV | MOHSIN SHAIKH'
 PAGE_ICON = ":wave:"
-st.set_page_config(page_title= PAGE_TITLE, 
+
+st.set_page_config(page_title= PAGE_TITLE,
                    page_icon= PAGE_ICON)
 
 # Inject custom CSS to change background color
@@ -52,7 +54,7 @@ if upper_panel == "BLOGS":
     
     
 if upper_panel == "CONTACT":
-    st.write('contact')
+    contact()
 
 
 
