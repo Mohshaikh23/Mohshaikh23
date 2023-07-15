@@ -93,6 +93,7 @@ def display_project(project):
     st.subheader(project_name)
     project_showcase()
     st.write(project_description)
+     
     
     st.markdown(f"[View Project]({project_url})")
     st.markdown("---")

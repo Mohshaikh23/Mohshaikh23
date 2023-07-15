@@ -1,0 +1,5 @@
+/* 3D Effect */
+.st-title, .st-write, .st-download_button {
+    transform: perspective(1000px) rotateY(10deg) rotateX(5deg);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}

@@ -8,11 +8,8 @@ import streamlit as st
 
 from streamlit_option_menu import option_menu
 from streamlit import session_state
-from extraction import get_github_repos , load_repositories, load_lottie_url, load_lottiefile,lottie, project_showcase,display_project
-from classification import classify_tags
-import streamlit.components.v1 as components
 
-from PORTFOLIO_ALL_PAGES.Overview import overview_mode, load_image
+from PORTFOLIO_ALL_PAGES.Overview import overview_mode, load_image, logos
 from PORTFOLIO_ALL_PAGES.Experience import experience
 from PORTFOLIO_ALL_PAGES.project import project
 
@@ -36,7 +33,7 @@ if upper_panel == "OVERVIEW":
         load_image()
     with col2:
         overview_mode()
-        
+    logos()
 if upper_panel == "EXPERIENCE":
     experience()
 
