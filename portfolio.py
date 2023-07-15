@@ -12,6 +12,7 @@ from streamlit import session_state
 from PORTFOLIO_ALL_PAGES.Overview import overview_mode, load_image, logos
 from PORTFOLIO_ALL_PAGES.Experience import experience
 from PORTFOLIO_ALL_PAGES.project import project
+from PORTFOLIO_ALL_PAGES.blogs import display_blog_post
 
 
 # -- GENERAL SETTINGS --
@@ -20,6 +21,8 @@ PAGE_ICON = ":wave:"
 st.set_page_config(page_title= PAGE_TITLE, 
                    page_icon= PAGE_ICON)
 
+# Inject custom CSS to change background color
+# st.markdown('<style>' + open('styles/main.css').read() + '</style>', unsafe_allow_html=True)
 
 upper_panel = option_menu(menu_title='', 
                           options = ['OVERVIEW','EXPERIENCE','PROJECTS',
@@ -34,27 +37,22 @@ if upper_panel == "OVERVIEW":
     with col2:
         overview_mode()
     logos()
+
+
 if upper_panel == "EXPERIENCE":
     experience()
+
 
 if upper_panel == "PROJECTS":
     project()
 
+
 if upper_panel == "BLOGS":
-    st.markdown("I write blogs here")
-    
+    display_blog_post()
     
     
 if upper_panel == "CONTACT":
-    Blogs_data  = option_menu( menu_title= 'Projects across Career',
-                                   options = ['Python Projects',
-                                              'Machine Learning Projects',
-                                              'Deep learning Projets',
-                                              'Computer Vision Projects'],
-                                    menu_icon='cast',
-                                    default_index=0, 
-                                    orientation='horizontal')
-
+    st.write('contact')
 
 
 

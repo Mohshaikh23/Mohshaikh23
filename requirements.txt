@@ -4,3 +4,4 @@ Pillow
 streamlit-option-menu
 plotly
 streamlit-lottie
+pyppeteer

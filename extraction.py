@@ -5,6 +5,7 @@ import pandas as pd
 import streamlit as st
 from streamlit_lottie import st_lottie
 import random
+import webbrowser
 
 DATA_FILE_PATH = "Repos/repositories.json"
 
@@ -24,7 +25,6 @@ def get_github_repos(username):
                 json.dump(repositories, file)
         else:
             repositories = []
-
     return repositories
 
 # get_github_repos(username='Mohshaikh23')
@@ -84,18 +84,23 @@ def project_showcase():
     
     lottie(animation)
     
-    
+def open_project(project_url):
+    webbrowser.open(project_url)
+
+
 def display_project(project):
     project_name = project["name"]
     project_url = project["html_url"]
     project_description = project["description"]
-
+    
     st.subheader(project_name)
     project_showcase()
     st.write(project_description)
      
-    
-    st.markdown(f"[View Project]({project_url})")
+    button_key = f"view_project_{project_name}"
+    if st.button("View Project", key=button_key):
+        open_project(project_url)
+        
     st.markdown("---")
 
 
