@@ -30,6 +30,7 @@ def get_github_repos(username):
 # get_github_repos(username='Mohshaikh23')
 
 def load_repositories():
+    DATA_FILE_PATH = "Repos/repositories.json"
     repositories = pd.read_json(DATA_FILE_PATH)
     df= pd.DataFrame(repositories)
     return df
