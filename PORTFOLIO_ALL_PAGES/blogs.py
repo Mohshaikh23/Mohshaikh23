@@ -5,7 +5,7 @@ from extraction import open_project
 
 def display_blog_post():
     df = pd.read_csv('blogs_folder/blog_data.csv')
-    # st.dataframe(dataframe)
+    df['screenshot_paths'] = df['screenshot_paths'].str.extract('(blogs_folder/blog_pics/screenshot\d+\.png)')
     st.title("Blog Showcase")
     num_rows = len(df)
 
